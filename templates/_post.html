@@ -1,0 +1,8 @@
+<article class="post" data-id="{{ x.id }}" data-owner="{{ x.uid }}"><div class="ph"><a class="av" href="{{ url_for('barbero_perfil', i=x.uid) }}">{% if x.avatar %}<img src="{{ url_for('static', filename=x.avatar) }}" alt="">{% else %}{{ (x.shop or x.name)[:1] }}{% endif %}</a><div><b>{{ x.shop or x.name }}</b><small>{{ x.created }}</small></div><span class="tag {{ x.kind }}">{{ x.kind }}</span></div>
+{% if x.img %}<div class="pimg"><img src="{{ url_for('static', filename=x.img) }}" alt="{{ x.title }}" loading="lazy"><span class="heart">♥</span></div>{% endif %}
+{% if x.video %}<div class="pvid"><video src="{{ url_for('static', filename=x.video) }}" controls playsinline preload="metadata" loop></video></div>{% endif %}
+<div class="pb"><h3>{{ x.title }}</h3><p>{{ x.body }}</p></div>
+<div class="pa"><button class="like {{ 'on' if x.liked }}"><span class="hi">{{ '♥' if x.liked else '♡' }}</span> <b class="ln">{{ x.likes }}</b></button><button class="ctog">💬 <b class="cn">{{ x.comments|length }}</b> Comentarios</button>
+<a href="{{ url_for('barbero_perfil', i=x.uid) }}">💈 Perfil</a>{% if x.whatsapp %}<a href="https://wa.me/{{ x.whatsapp|wa }}?text=Hola, vi tu publicación en BarberSoft" target="_blank">🟢 WhatsApp</a>{% endif %}</div>
+<div class="cm"><div class="cmi"><div class="cl">{% for c in x.comments %}{% include "_comment.html" %}{% endfor %}</div>
+{% if me %}<form class="cf"><input placeholder="Escribe un comentario…" maxlength="300" required><button>Enviar</button></form>{% else %}<p class="muted"><a href="{{ url_for('login') }}">Inicia sesión</a> o <a href="{{ url_for('registro') }}">crea tu cuenta</a> para comentar.</p>{% endif %}</div></div></article>

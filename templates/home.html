@@ -1,0 +1,17 @@
+{% extends "base.html" %}{% block body %}
+<section class="hero" id="hero"><div class="floaters">
+<img class="fl f1" data-d="40" src="{{ url_for('static', filename='img/scissors.png') }}" alt=""><img class="fl f2" data-d="-30" src="{{ url_for('static', filename='img/razor.png') }}" alt="">
+<img class="fl f3" data-d="25" src="{{ url_for('static', filename='img/comb.png') }}" alt=""><img class="fl f4" data-d="-45" src="{{ url_for('static', filename='img/pole.png') }}" alt=""></div>
+<div class="hc"><span class="eyebrow">✂ La plataforma para barberías</span>
+<h1>MÁS CONTROL PARA TU NEGOCIO.<br><span class="grad">MÁS TIEMPO PARA TUS CLIENTES.</span></h1>
+<p class="lead">Organiza tus <b id="typed"></b><i class="caret"></i><br>Y para los clientes: la mejor red para encontrar barberos, cortes y ofertas.</p>
+<a class="btn" href="{{ url_for('feed') }}">Soy cliente</a> <a class="btn alt" href="{{ url_for('login', role='barbero') }}">Soy barbero · Acceso administrativo</a></div>
+<div class="polebig"></div></section>
+<div class="ticker"><div class="tk">{% for i in range(2) %}{% for t in (tk or ['Citas organizadas','Clientes mejor atendidos','Facturas en ticket pequeño','Ofertas de tu barbero favorito','CRM para tu barbería']) %}<span>💈 {{ t }}</span>{% endfor %}{% endfor %}</div></div>
+<section class="stats"><div><b data-n="{{ st.b }}">0</b><span>Barberías</span></div><div><b data-n="{{ st.p }}">0</b><span>Publicaciones</span></div><div><b data-n="{{ st.c }}">0</b><span>Comentarios</span></div><div><b data-n="{{ st.l }}">0</b><span>Me gusta</span></div></section>
+<section class="wrap"><h2 class="sec">Conoce BarberSoft</h2><div class="grid">
+{% for s,p in pages.items() %}<a class="card" href="{{ url_for('pagina', slug=s) }}"><span class="ic">{{ p.icon }}</span><h3>{{ p.t }}</h3><small>Ver más →</small></a>{% endfor %}</div></section>
+<section class="wrap narrow"><h2 class="sec">Lo último en la comunidad</h2><div class="posts">{% for x in posts %}{% include "_post.html" %}{% endfor %}</div>
+<p><a class="btn alt" href="{{ url_for('feed') }}">Ver todas las publicaciones</a></p></section>
+<section class="band"><h2>¿Tienes una barbería?</h2><p>Con BarberSoft administras citas, registras clientes, controlas productos y revisas ventas. Dedica menos tiempo a buscar información y más a brindar un servicio que haga que tus clientes quieran volver.</p><a class="btn dark" href="{{ url_for('registro', role='barbero') }}">Crear cuenta de barbero</a></section>
+{% endblock %}

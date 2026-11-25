@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block body %}<section class="wrap narrow"><h1>{{ 'Editar' if inv else 'Nueva' }} factura</h1>{% include "_anav.html" %}
+<form method="post" class="form" id="fform"><label>Cliente<input name="client_name" list="cl" required value="{{ inv.client_name if inv }}"></label><datalist id="cl">{% for c in cl %}<option value="{{ c.name }}">{% endfor %}</datalist>
+<div id="rows">{% for i in (inv.items|items if inv else [{'d':'Corte','c':1,'p':''}]) %}<div class="row"><input name="d" placeholder="Servicio / producto" value="{{ i.d }}"><input name="c" type="number" step="any" value="{{ i.c }}" placeholder="Cant."><input name="p" type="number" step="any" value="{{ i.p }}" placeholder="Precio"><button type="button" class="lnk rm">✕</button></div>{% endfor %}</div>
+<button type="button" class="btn sm alt" id="addrow">+ Línea</button>
+<label class="chk"><input type="checkbox" name="itbis" {{ 'checked' if inv and inv.itbis }}> Aplicar ITBIS 18%</label><h3>Total: RD$ <span id="tot">0.00</span></h3><button class="btn">Guardar e imprimir ticket</button></form></section>{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "base.html" %}{% block title %}{{ 'Entrar' if mode=='login' else 'Crear cuenta' }}{% endblock %}{% block body %}
+<section class="wrap authbg"><form method="post" class="form auth {{ role }}">
+<h1>{{ '💈 Acceso administrativo' if role=='barbero' else '🧔 Acceso clientes' }}</h1><p class="muted">{{ 'Crear cuenta' if mode=='registro' else 'Iniciar sesión' }}</p>
+{% if mode=='registro' %}<label>Nombre<input name="name" required></label>
+{% if role=='barbero' %}<label>Nombre de la barbería<input name="shop" required></label><label>WhatsApp (con código, ej. 18095550000)<input name="whatsapp"></label><label>Dirección<input name="address"></label>{% endif %}{% endif %}
+<label>Correo<input type="email" name="email" required></label><label>Contraseña<input type="password" name="pw" required></label>
+<button class="btn">{{ 'Crear cuenta' if mode=='registro' else 'Entrar' }}</button>
+<p class="muted">{% if mode=='login' %}¿No tienes cuenta? <a href="{{ url_for('registro', role=role) }}">Regístrate</a>{% else %}¿Ya tienes cuenta? <a href="{{ url_for('login', role=role) }}">Entra</a>{% endif %}
+· <a href="{{ url_for('login', role='cliente' if role=='barbero' else 'barbero') }}">{{ 'Soy cliente' if role=='barbero' else 'Soy barbero' }}</a></p>
+{% if mode=='login' %}<p class="muted">Demo: {{ 'barbero@demo.do' if role=='barbero' else 'cliente@demo.do' }} / demo1234</p>{% endif %}</form></section>{% endblock %}

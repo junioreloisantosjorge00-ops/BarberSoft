@@ -1,0 +1,2 @@
+{% extends "base.html" %}{% block body %}<section class="wrap"><h1>Panel de {{ me.shop or me.name }}</h1>{% include "_anav.html" %}
+<div class="grid"><div class="card"><h3>{{ s.posts }}</h3><p>Publicaciones</p></div><div class="card"><h3>{{ s.clients }}</h3><p>Clientes en CRM</p></div><div class="card"><h3>{{ s.inv.c }}</h3><p>Facturas</p></div><div class="card"><h3>RD$ {{ '%.2f'|format(s.inv.t) }}</h3><p>Total facturado</p></div></div></section>{% endblock %}

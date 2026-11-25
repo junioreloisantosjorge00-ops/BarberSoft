@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block title %}{{ p.t }}{% endblock %}{% block body %}
+<div class="banner"><div class="crumb"><a href="{{ url_for('home') }}">Inicio</a> / {{ p.t }}</div><h1>{{ p.icon }} {{ p.t }}</h1></div>
+<section class="wrap narrow">{% for t in p.p %}<p>{{ t }}</p>{% endfor %}
+{% if p.li %}<ul class="check">{% for t in p.li %}<li><b>{{ t.split(':')[0] }}{% if ':' in t %}:{% endif %}</b>{{ t.split(':',1)[1] if ':' in t else '' }}</li>{% endfor %}</ul>{% endif %}
+{% for t in p.p2 %}<p>{{ t }}</p>{% endfor %}
+<div class="pn">{% if prev %}<a class="btn alt" href="{{ url_for('pagina', slug=prev) }}">← {{ pages[prev].t }}</a>{% endif %}{% if nxt %}<a class="btn" href="{{ url_for('pagina', slug=nxt) }}">{{ pages[nxt].t }} →</a>{% endif %}</div></section>{% endblock %}

@@ -1,0 +1,2 @@
+<div class="c" data-id="{{ c.id }}"><div class="av sm">{{ (c.shop or c.name)[:1] }}</div><div class="cb"><b>{{ c.shop or c.name }}</b>{% if c.role=='barbero' %} <em>💈 barbero</em>{% endif %} <small>{{ c.created }}</small><p>{{ c.body }}</p></div>
+{% if me and (me.id==c.user_id or me.id==x.uid) %}<button class="cdel" title="Borrar">✕</button>{% endif %}</div>

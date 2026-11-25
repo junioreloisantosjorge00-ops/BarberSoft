@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block title %}Comunidad{% endblock %}{% block body %}
+<div class="banner"><h1>Comunidad</h1><p>Mira, comenta y reserva con tu barbero favorito</p></div><section class="wrap narrow">
+<div class="stories">{% for s in stories %}<a href="{{ url_for('barbero_perfil', i=s.id) }}"><span class="ring"><span class="av big">{% if s.avatar %}<img src="{{ url_for('static', filename=s.avatar) }}" alt="">{% else %}{{ (s.shop or s.name)[:1] }}{% endif %}</span></span><small>{{ (s.shop or s.name)[:12] }}</small></a>{% endfor %}</div>
+<div class="tabs"><a class="{{ '' if k else 'on' }}" href="?">Todo</a><a class="{{ 'on' if k=='anuncio' }}" href="?k=anuncio">📢 Anuncios</a><a class="{{ 'on' if k=='oferta' }}" href="?k=oferta">🔥 Ofertas</a><a class="{{ 'on' if k=='corte' }}" href="?k=corte">✂ Cortes</a></div>
+<div class="posts">{% for x in posts %}{% include "_post.html" %}{% else %}<p>Aún no hay publicaciones.</p>{% endfor %}</div></section>{% endblock %}

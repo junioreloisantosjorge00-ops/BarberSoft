@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block title %}{{ b.shop }}{% endblock %}{% block body %}
+<section class="wrap narrow"><div class="prof"><div class="av big">{% if b.avatar %}<img src="{{ url_for('static', filename=b.avatar) }}">{% else %}{{ (b.shop or b.name)[:1] }}{% endif %}</div><div><h1>{{ b.shop or b.name }}</h1><p>{{ b.bio }}</p><p>📍 {{ b.address }}</p>
+{% if b.whatsapp %}<a class="btn" target="_blank" href="https://wa.me/{{ b.whatsapp|wa }}?text=Hola, quiero reservar una cita">🟢 Escribir por WhatsApp</a>{% endif %}</div></div>
+{% if b.address %}<iframe class="map" loading="lazy" src="https://maps.google.com/maps?q={{ b.address|urlencode }}&output=embed"></iframe>
+<p><a target="_blank" href="https://www.google.com/maps/search/?api=1&query={{ b.address|urlencode }}">Abrir en Google Maps ↗</a></p>{% endif %}
+<h2>Publicaciones</h2><div class="posts">{% for x in posts %}{% set x = x %}{% include "_post.html" %}{% else %}<p>Sin publicaciones todavía.</p>{% endfor %}</div></section>{% endblock %}

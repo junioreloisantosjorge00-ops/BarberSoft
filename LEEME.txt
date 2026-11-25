@@ -1,0 +1,14 @@
+COMO ABRIR BARBERSOFT
+1. Instala Python desde python.org (marca "Add Python to PATH").
+2. Extrae este ZIP (clic derecho > Extraer todo).
+3. Windows: doble clic en INICIAR_WINDOWS.bat
+   Mac: doble clic en INICIAR_MAC.command
+4. Se abre el navegador solo. Si no, entra a http://127.0.0.1:5000
+5. Barbero demo: http://127.0.0.1:5000/admin/login
+   Barbero: barbero@demo.do / demo1234
+   Cliente: cliente@demo.do (entrada normal, boton Entrar) / demo1234
+No cierres la ventana negra mientras uses la pagina.
+
+FOTO DE FONDO PROPIA (opcional)
+Guarda una foto de tu barberia como static/img/hero.jpg y se usara
+automaticamente de fondo en el inicio, encabezados y login.

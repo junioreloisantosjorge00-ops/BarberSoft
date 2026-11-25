@@ -1,0 +1,22 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}BarberSoft{% endblock %} · BarberSoft</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head><body>
+<div id="progress"></div>
+<header class="nav"><a class="logo" href="{{ url_for('home') }}"><span class="spin">✂</span> BARBER<b>SOFT</b></a>
+<button id="burger" aria-label="Menú">☰</button>
+<nav id="menu">
+<a href="{{ url_for('home') }}">Inicio</a>
+<div class="dd"><a href="#">Empresa ▾</a><div class="ddm">{% for s,p in pages.items() %}<a href="{{ url_for('pagina', slug=s) }}">{{ p.icon }} {{ p.t }}</a>{% endfor %}</div></div>
+<a href="{{ url_for('feed') }}">Comunidad</a><a href="{{ url_for('barberos') }}">Barberos</a><a href="{{ url_for('promo') }}">¿Qué ganas?</a>
+{% if me %}{% if me.role=='barbero' %}<a class="btn sm" href="{{ url_for('admin') }}">Panel</a>{% endif %}<a href="{{ url_for('salir') }}">Salir ({{ me.name.split()[0] }})</a>
+{% else %}<a href="{{ url_for('login') }}">Entrar</a><a class="btn sm" href="{{ url_for('login', role='barbero') }}">Soy barbero</a>{% endif %}
+</nav></header>
+<div id="toasts">{% for x in get_flashed_messages() %}<div class="flash">{{ x }}</div>{% endfor %}</div>
+<main>{% block body %}{% endblock %}</main>
+<footer><div class="pole"></div><p>✂ BarberSoft · Menos desorden en la gestión, más claridad para crecer · República Dominicana</p></footer>
+<button id="top" aria-label="Subir">↑</button>
+<div id="bot"><button id="botbtn">💬<i></i></button><div id="botbox" hidden><div class="bh">BarberBot ✂<span id="botx">×</span></div><div id="botmsgs"></div><div id="chips"></div>
+<form id="botform"><input id="botin" placeholder="Escribe tu pregunta…" autocomplete="off"><button>➤</button></form></div></div>
+<script>window.LOGGED={{ 'true' if me else 'false' }};window.LOGIN="{{ url_for('login') }}";</script>
+<script src="{{ url_for('static', filename='app.js') }}"></script></body></html>
